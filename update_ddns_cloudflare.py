@@ -67,43 +67,23 @@ def save_config(api_token, zone_id, record_name):
         file.write(f'zone_id={zone_id}\n')
         file.write(f'record_name={record_name}\n')
 
-# Função para reconfigurar os dados
-def reconfigure():
+# Verificar se o arquivo de configuração existe
+if not os.path.isfile('config.txt'):
     api_token = input("Digite seu API token: ")
     zone_id = input("Digite seu Zone ID: ")
     record_name = input("Digite o nome do registro DNS: ")
     save_config(api_token, zone_id, record_name)
-
-# Verificar argumentos da linha de comando
-if len(sys.argv) > 1 and sys.argv[1] == '--reconfigure':
-    reconfigure()
 else:
-    # Verificar se o arquivo de configuração existe
-    if not os.path.isfile('config.txt'):
-        reconfigure()
-    else:
-        config = read_config()
-        api_token = config['api_token']
-        zone_id = config['zone_id']
-        record_name = config['record_name']
+    config = read_config()
+    api_token = config['api_token']
+    zone_id = config['zone_id']
+    record_name = config['record_name']
 
-        # Verificar e atualizar o IP se necessário
-        current_ip = get_current_ip()
-        saved_ip = None
-        try:
-            with open('current_ip.txt', 'r') as file:
-                saved_ip = file.read().strip()
-        except FileNotFoundError:
-            pass
-
-        if current_ip != saved_ip:
-            record_id = get_record_id(api_token, zone_id, record_name)
-            if record_id:
-                update_dns_record(api_token, zone_id, record_id, current_ip, record_name)
-                with open('current_ip.txt', 'w') as file:
-                    file.write(current_ip)
-                print(f"Registrado com sucesso endereço: {current_ip}")
-            else:
-                print("Record ID não encontrado.")
-        else:
-            print("O IP atual é o mesmo. Nenhuma atualização necessária.")
+# Obter e atualizar o IP
+current_ip = get_current_ip()
+record_id = get_record_id(api_token, zone_id, record_name)
+if record_id:
+    update_dns_record(api_token, zone_id, record_id, current_ip, record_name)
+    print(f"Registrado com sucesso endereço: {current_ip}")
+else:
+    print("Record ID não encontrado.")
