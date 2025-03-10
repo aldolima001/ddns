@@ -1,3 +1,6 @@
+# "Importante:
+
+Sempre recomendamos que você teste qualquer script, seja ele nosso ou de terceiros, em um ambiente de homologação antes de implementá-lo em produção. Isso ajuda a garantir que o script funcione conforme esperado e evita possíveis problemas em seu ambiente de produção.
 # ddns
 Scripts Alternativa DDNS
 
