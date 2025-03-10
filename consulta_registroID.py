@@ -1,9 +1,31 @@
+Scripts Faz Consulta a Registro DNS CloudFlare.
+
+Aviso: O código presente neste repositório é destinado a fins educacionais e demonstrativos. Ele foi desenvolvido com o objetivo de auxiliar na configuração do DDNS utilizando as plataformas Cloudflare e DigitalOcean. No entanto, o autor não oferece suporte técnico ou garante a sua funcionalidade em todos os cenários.
+
+É fundamental que você:
+
+Revise o código: Analise linha por linha para entender o funcionamento e identificar possíveis vulnerabilidades.
+
+Adapte o código: Faça as modificações necessárias para que o script se ajuste ao seu ambiente específico.
+
+Teste o código: Execute o script em um ambiente de testes antes de implementá-lo em produção.
+
+Consulte a documentação: Consulte a documentação oficial da Cloudflare para obter informações mais detalhadas sobre as APIs e as melhores práticas de segurança.
+
+O autor não se responsabiliza por:
+
+Erros ou omissões: O código pode conter erros ou omissões que podem causar problemas inesperados.
+
+Danos: O uso indevido deste código pode causar danos ao seu sistema ou a terceiros.
+
+Violação de segurança: O código pode ser vulnerável a ataques de segurança.
+
 import requests
 
 # Variáveis
-api_token = 'cn9M5zW0kURqZviLx7sBfc4mrnV8K-RRpkDH6qoR'
-zone_id = '6010b6df61f063e1c55ac3cced22901e'
-registro_nome_completo = 'teste3.devemcasa.com.br'  # Especifique o nome completo do registro
+api_token = 'Seu Token API'
+zone_id = 'ID da Sua Zona'
+registro_nome_completo = 'hostname completo do registro Exemplo teste.aldolima.com.br'  # Especifique o nome completo do registro
 
 # Cabeçalhos da API
 headers = {
